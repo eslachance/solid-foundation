@@ -1,4 +1,4 @@
-import type { Component } from 'solid-js';
+import type { Component, Accessor } from 'solid-js';
 
 import { For } from 'solid-js';
 
@@ -9,13 +9,11 @@ type Todo = {
   completed: boolean;
 };
 
-type Props = {
-  todos: Todo[];
+const List: Component<{
+  todos: Accessor<Todo[]>;
   toggleTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
-};
-
-const List: Component = ({ todos, toggleTodo, deleteTodo }: Props) => {
+}> = ({ todos, toggleTodo, deleteTodo }) => {
   return (
     <div class="list-wrapper">
       <ul class="d-flex flex-column-reverse todo-list">
@@ -44,6 +42,6 @@ const List: Component = ({ todos, toggleTodo, deleteTodo }: Props) => {
       </ul>
     </div>
   );
-}
+};
 
-export default List
+export default List;

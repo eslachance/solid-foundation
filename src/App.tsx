@@ -1,6 +1,6 @@
-import type { Component } from 'solid-js';
+import { Component, createEffect } from 'solid-js';
 
-import { createSignal, onMount, For } from 'solid-js';
+import { createSignal, onMount, on } from 'solid-js';
 
 import NavigationBar from './Components/Navigation';
 import List from './Components/List'
@@ -17,12 +17,19 @@ type Todo = {
 
 const App: Component = () => {
   const [todos, setTodos] = createSignal<Todo[]>([]);
-  const [searchTerm, setSearchTerm] = createSignal<string | null>();
+  const [searchTerm, setSearchTerm] = createSignal<string>('');
 
-  onMount(async () => {
-    const data = await fetch('/api/todos').then((res) => res.json());
-    setTodos(data.todos);
-  });
+  createEffect(on(searchTerm, (v) => {
+    const endpoint =
+      v && v.length > 0 ? `/api/search/${encodeURI(v)}` : '/api/todos';
+
+      fetch(endpoint)
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data);
+        setTodos(data.todos);
+      });
+  }));
 
   const toggleTodo = (id: number) => {
     fetch('/api/todos/toggle/'+id)
@@ -54,6 +61,7 @@ const App: Component = () => {
           A dead-simple todo example without fluff for comprehension of the
           basics.
         </p>
+        <p>Filter: {searchTerm}</p>
         <div class="container">
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <List

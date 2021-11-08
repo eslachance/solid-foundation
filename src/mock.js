@@ -21,7 +21,7 @@ export default function() {
       this.get('/search/:term', (schema, request) => {
         let term = request.params.term;
         // todo: use better search here
-        const results = schema.where((todo) => todo.title.includes(term));
+        const results = schema.todos.where((todo) => todo.title.includes(term));
         return results;
       });
 
