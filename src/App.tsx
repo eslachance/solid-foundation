@@ -1,10 +1,10 @@
 import { Component, createEffect } from 'solid-js';
 
-import { createSignal, onMount, on } from 'solid-js';
+import { createSignal, on } from 'solid-js';
 
-import NavigationBar from './Components/Navigation';
 import List from './Components/List'
 import Search from './Components/Search'
+import Form from './Components/Form';
 
 import styles from './App.module.css';
 
@@ -52,23 +52,16 @@ const App: Component = () => {
       .catch(e => console.log(e))
   }
 
+  const addTodo = (newTodo: Todo) => {
+    setTodos((existingTodos) => existingTodos.concat(newTodo));
+  };
+
   return (
     <>
       <div class={styles.App}>
-        <NavigationBar />
-        <h1>Simple SolidJS Todo Example</h1>
-        <p>
-          A dead-simple todo example without fluff for comprehension of the
-          basics.
-        </p>
-        <p>Filter: {searchTerm}</p>
         <div class="container">
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-          <List
-            todos={todos}
-            toggleTodo={toggleTodo}
-            deleteTodo={deleteTodo}
-          />
+          <Form addTodo={addTodo} />
+          <List todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
         </div>
       </div>
     </>

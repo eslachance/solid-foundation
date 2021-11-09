@@ -1,9 +1,8 @@
 import type { Component, Accessor } from 'solid-js';
-
+import IconDelete from '~icons/mdi/delete';
 import { For } from 'solid-js';
 
 type Todo = {
-  userId: number;
   id: number;
   title: string;
   completed: boolean;
@@ -32,10 +31,11 @@ const List: Component<{
                   <i className="input-helper" />
                 </label>
               </div>
-              <i
+              <IconDelete
                 className="remove mdi mdi-close-circle-outline"
                 onClick={() => deleteTodo(todo.id)}
               />
+              <i />
             </li>
           )}
         </For>
