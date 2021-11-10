@@ -3,7 +3,6 @@ import { Component, createEffect } from 'solid-js';
 import { createSignal, on } from 'solid-js';
 
 import List from './Components/List'
-import Search from './Components/Search'
 import Form from './Components/Form';
 
 import styles from './App.module.css';

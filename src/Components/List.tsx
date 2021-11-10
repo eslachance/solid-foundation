@@ -1,6 +1,7 @@
 import type { Component, Accessor } from 'solid-js';
-import IconDelete from '~icons/mdi/delete';
 import { For } from 'solid-js';
+import IconDelete from '~icons/mdi/delete';
+import { marked } from 'marked';
 
 type Todo = {
   id: number;
@@ -12,11 +13,12 @@ const List: Component<{
   todos: Accessor<Todo[]>;
   toggleTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
-}> = ({ todos, toggleTodo, deleteTodo }) => {
+}> = (props) => {
+  
   return (
     <div class="list-wrapper">
       <ul class="d-flex flex-column-reverse todo-list">
-        <For each={todos().slice(0, 20)}>
+        <For each={props.todos().slice(0, 20)}>
           {(todo, i) => (
             <li>
               <div className="form-check">
@@ -25,15 +27,15 @@ const List: Component<{
                     className="checkbox"
                     checked={todo.completed}
                     type="checkbox"
-                    onClick={() => toggleTodo(todo.id)}
+                    onClick={() => props.toggleTodo(todo.id)}
                   />
-                  {todo.title}
+                  <span innerHTML={marked.parse(todo.title)} />
                   <i className="input-helper" />
                 </label>
               </div>
               <IconDelete
                 className="remove mdi mdi-close-circle-outline"
-                onClick={() => deleteTodo(todo.id)}
+                onClick={() => props.deleteTodo(todo.id)}
               />
               <i />
             </li>
