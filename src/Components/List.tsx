@@ -3,18 +3,13 @@ import { For } from 'solid-js';
 import IconDelete from '~icons/mdi/delete';
 import { marked } from 'marked';
 
-type Todo = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
+import { Todo } from '../types';
 
 const List: Component<{
   todos: Accessor<Todo[]>;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  toggleTodo: (id: string) => void;
+  deleteTodo: (id: string) => void;
 }> = (props) => {
-  
   return (
     <div class="list-wrapper">
       <ul class="d-flex flex-column-reverse todo-list">

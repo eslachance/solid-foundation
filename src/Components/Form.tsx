@@ -1,27 +1,29 @@
 import type { Component, Accessor } from 'solid-js';
 import { createSignal } from 'solid-js';
-
 import { v1 as uuid } from 'uuid';
 
-type Todo = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
+import { Todo } from '../types';
 
 const Form: Component<{
   addTodo: (todo: Todo) => void;
 }> = (props) => {
   const [title, setTitle] = createSignal('');
 
-  const handleChange = (event) => {
-    setTitle(event.target.value);
+  const handleChange = (event: Event) => {
+    setTitle((event.target as HTMLTextAreaElement).value);
   };
 
   const handleClickButton = () => {
     const id = uuid();
-    props.addTodo({ title, id, isComplete: false });
+    props.addTodo({ title: title(), id, completed: false });
     setTitle('');
+  };
+
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (event.key == "Enter") {
+      event.preventDefault(); 
+      handleClickButton();
+    }
   };
 
   return (
@@ -31,7 +33,8 @@ const Form: Component<{
         className="form-control todo-list-input"
         placeholder="What do you need to do today?"
         value={title()}
-        onChange={handleChange}
+        onInput={handleChange}
+        onKeyPress={handleKeyPress}
       />
       <button
         onClick={handleClickButton}

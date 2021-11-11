@@ -1,5 +1,4 @@
 import { Component, createEffect } from 'solid-js';
-
 import { createSignal, on } from 'solid-js';
 
 import List from './Components/List'
@@ -7,12 +6,7 @@ import Form from './Components/Form';
 
 import styles from './App.module.css';
 
-type Todo = {
-    userId: number
-    id: number
-    title: string
-    completed: boolean
-}
+import { Todo } from './types'
 
 const App: Component = () => {
   const [todos, setTodos] = createSignal<Todo[]>([]);
@@ -30,7 +24,7 @@ const App: Component = () => {
       });
   }));
 
-  const toggleTodo = (id: number) => {
+  const toggleTodo = (id: string) => {
     fetch('/api/todos/toggle/'+id)
       .then(res => res.json())
       .then(changes => {
@@ -42,14 +36,14 @@ const App: Component = () => {
       .catch(e => console.log(e))
   }
 
-  const deleteTodo = (id: number) => {
-    console.log(id)
-    fetch('/api/todos/'+id, { method: 'DELETE' })
+  const deleteTodo = (id: string) => {
+    console.log(id);
+    fetch('/api/todos/' + id, { method: 'DELETE' })
       .then(() => {
-        setTodos(prev => prev.filter(item => item.id !== id));
+        setTodos((prev) => prev.filter((item) => item.id !== id));
       })
-      .catch(e => console.log(e))
-  }
+      .catch((e) => console.log(e));
+  };
 
   const addTodo = (newTodo: Todo) => {
     setTodos((existingTodos) => existingTodos.concat(newTodo));

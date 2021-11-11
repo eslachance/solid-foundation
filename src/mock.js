@@ -59,17 +59,17 @@ export default function () {
 
 const jsondata = [
   {
-    id: 1,
+    id: 'abc123',
     title: 'Visit [SolidJS](https://solidjs.com/) and get started!',
     completed: false,
   },
   {
-    id: 2,
+    id: 'def456',
     title: 'Fork this repository and get to coding!',
     completed: false,
   },
   {
-    id: 3,
+    id: 'ghi789',
     title: 'Join the [Discord](https://discord.gg/solidjs) community for help!',
     completed: false,
   },
