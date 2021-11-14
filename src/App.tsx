@@ -4,8 +4,6 @@ import { createSignal, on } from 'solid-js';
 import List from './Components/List'
 import Form from './Components/Form';
 
-import styles from './App.module.css';
-
 import { Todo } from './types'
 
 const App: Component = () => {
@@ -51,10 +49,17 @@ const App: Component = () => {
 
   return (
     <>
-      <div class={styles.App}>
-        <div class="container">
-          <Form addTodo={addTodo} />
-          <List todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+      <div>
+        <div class="card px-3">
+          <div class="card-body">
+            <h4 class="card-title">Redux Todo list</h4>
+            <Form addTodo={addTodo} />
+            <List
+              todos={todos}
+              toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo}
+            />
+          </div>
         </div>
       </div>
     </>

@@ -16,20 +16,20 @@ const List: Component<{
         <For each={props.todos().slice(0, 20)}>
           {(todo, i) => (
             <li>
-              <div className="form-check">
-                <label className="form-check-label">
+              <div class="form-check">
+                <label class="form-check-label">
                   <input
-                    className="checkbox"
+                    class="checkbox"
                     checked={todo.completed}
                     type="checkbox"
                     onClick={() => props.toggleTodo(todo.id)}
                   />
                   <span innerHTML={marked.parse(todo.title)} />
-                  <i className="input-helper" />
+                  <i class="input-helper" />
                 </label>
               </div>
               <IconDelete
-                className="remove mdi mdi-close-circle-outline"
+                class="remove mdi mdi-close-circle-outline"
                 onClick={() => props.deleteTodo(todo.id)}
               />
               <i />

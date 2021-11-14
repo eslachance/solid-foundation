@@ -18,6 +18,7 @@
     "@types/marked": "^4.0.0",
     "lodash-es": "^4.17.15",
     "marked": "^4.0.0",
+    "solid-blocks": "^0.0.1",
     "solid-js": "^1.2.2",
     "uuid": "^8.3.2"
   },

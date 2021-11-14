@@ -1,4 +1,4 @@
-import type { Component, Accessor } from 'solid-js';
+import type { Component } from 'solid-js';
 import { createSignal } from 'solid-js';
 import { v1 as uuid } from 'uuid';
 

@@ -3010,10 +3010,22 @@ snoop@^1.0.2:
   resolved "https://registry.yarnpkg.com/snoop/-/snoop-1.0.2.tgz#250ea5d7513d923dfbd66c9140b554372c89d662"
   integrity sha512-oJdXCYB8wgoUHRZtGTUcy8Vwr6J4EnzDcRodfgYZBSebqfyLrsDzFQME4GTAy5CQ7jDGILRjz+ei8bRS+Vwnew==
 
+solid-blocks@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/solid-blocks/-/solid-blocks-0.0.1.tgz#c9e8de2aedf76e07af7e062d5dc1f6d65c022950"
+  integrity sha512-jjZKtlrdx3l7LGFZP/9WrKBIT+7VQskd6VmdP2zFJc9853wbh3gULHAlSPtdL/4ljAVylQIZkZ9voUSgcMxVtw==
+  dependencies:
+    solid-js "^1.2.3"
+
 solid-js@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.2.2.tgz#a12170ee2c09db4ef2c494a1be2767bde19d9e62"
   integrity sha512-2FtxO+bHDzS7RwGUU/aQ36VOX81e3Cf1KE4GzbySrG1huYP51zotjqLqfWbKe89nwPjXQBoxnEK5hnBfDj0O0Q==
+
+solid-js@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.2.3.tgz#5f1ef6559465d453d392b3f221b2f36f80ee0154"
+  integrity sha512-HQv7F23wSQRIuD0gNF3L1/0MHkTEia7J9Oc4VcEeLjAenkqz89tFkztBIp0PABDqK83fxzcixhSXx0xLv4lNAQ==
 
 solid-refresh@^0.2.2:
   version "0.2.2"
