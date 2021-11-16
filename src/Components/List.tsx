@@ -3,18 +3,17 @@ import { For } from 'solid-js';
 import IconDelete from '~icons/mdi/delete';
 import { marked } from 'marked';
 
+import { useStore } from '../store';
 import { Todo } from '../types';
 
-const List: Component<{
-  todos: Accessor<Todo[]>;
-  toggleTodo: (id: string) => void;
-  deleteTodo: (id: string) => void;
-}> = (props) => {
+const List: Component = () => {
+  const [state, { deleteTodo, toggleTodo }] = useStore();
+
   return (
     <div class="list-wrapper">
       <ul class="d-flex flex-column-reverse todo-list">
-        <For each={props.todos().slice(0, 20)}>
-          {(todo, i) => (
+        <For each={state.todos.slice(0, 20)}>
+          {(todo: Todo, i) => (
             <li>
               <div class="form-check">
                 <label class="form-check-label">
@@ -22,7 +21,7 @@ const List: Component<{
                     class="checkbox"
                     checked={todo.completed}
                     type="checkbox"
-                    onClick={() => props.toggleTodo(todo.id)}
+                    onClick={() => toggleTodo(todo.id)}
                   />
                   <span innerHTML={marked.parse(todo.title)} />
                   <i class="input-helper" />
@@ -30,7 +29,7 @@ const List: Component<{
               </div>
               <IconDelete
                 class="remove mdi mdi-close-circle-outline"
-                onClick={() => props.deleteTodo(todo.id)}
+                onClick={() => deleteTodo(todo.id)}
               />
               <i />
             </li>

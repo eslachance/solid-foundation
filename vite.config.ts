@@ -8,4 +8,9 @@ export default defineConfig({
     target: 'esnext',
     polyfillDynamicImport: false,
   },
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3005'
+    }
+  }
 });

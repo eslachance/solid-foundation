@@ -2,12 +2,12 @@ import type { Component } from 'solid-js';
 import { createSignal } from 'solid-js';
 import { v1 as uuid } from 'uuid';
 
-import { Todo } from '../types';
+import { useStore } from '../store';
 
-const Form: Component<{
-  addTodo: (todo: Todo) => void;
-}> = (props) => {
+const Form: Component = (props) => {
   const [title, setTitle] = createSignal('');
+
+  const [, { addTodo }] = useStore();
 
   const handleChange = (event: Event) => {
     setTitle((event.target as HTMLTextAreaElement).value);
@@ -15,7 +15,7 @@ const Form: Component<{
 
   const handleClickButton = () => {
     const id = uuid();
-    props.addTodo({ title: title(), id, completed: false });
+    addTodo({ title: title(), id, completed: false });
     setTitle('');
   };
 

@@ -1,8 +1,15 @@
 import { render } from 'solid-js/web';
 
+import { AppProvider } from './store';
+
 import './index.css';
 import App from './App';
-import mockserver from './mock';
-mockserver();
 
-render(() => <App />, document.getElementById('root') as HTMLElement);
+render(
+  () => (
+    <AppProvider>
+      <App />
+    </AppProvider>
+  ),
+  document.getElementById('root') as HTMLElement,
+);
