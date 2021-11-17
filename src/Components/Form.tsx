@@ -27,7 +27,7 @@ const Form: Component = (props) => {
   };
 
   return (
-    <div className="add-items d-flex">
+    <div class="hstack gap-3">
       <input
         type="text"
         className="form-control todo-list-input"

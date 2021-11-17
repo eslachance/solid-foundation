@@ -15,20 +15,68 @@ const Header: Component = () => {
   return (
     <>
       <nav
-        class="py-2 bg-primary border-bottom"
+        class="py-2 bg-dark border-bottom"
         style={{
-          height: state.auth.isLoggedIn ? '10vh' : '100vh',
+          height: state.auth.isLoggedIn ? '64px' : '100vh',
           transition: 'height 2s ease',
         }}
       >
-        <Transition name="fade">
+        <Transition
+          mode="outin"
+          onEnter={(_el, done) => {
+            const el = _el as HTMLElement;
+
+            el.style.opacity = '0';
+            el.style.transition = '500ms opacity';
+            document.body.clientWidth; // reflow
+            // hide scrollbar
+            document.body.style.overflow = 'hidden';
+
+            el.style.opacity = '1';
+
+            el.addEventListener('transitionend', (e) => {
+              if (e.currentTarget !== e.target) return;
+              el.style.opacity = '';
+              el.style.transition = '';
+
+              done();
+            });
+          }}
+          onAfterEnter={() => {
+            // restore scrollbar
+            document.body.style.overflow = '';
+          }}
+          onExit={(_el, done) => {
+            const el = _el as HTMLElement;
+
+            el.style.opacity = '1';
+            el.style.transition = '500ms opacity';
+            document.body.clientWidth; // reflow
+            // hide scrollbar
+            document.body.style.overflow = 'hidden';
+
+            el.style.opacity = '0';
+
+            el.addEventListener('transitionend', (e) => {
+              if (e.currentTarget !== e.target) return;
+              el.style.opacity = '';
+              el.style.transition = '';
+
+              done();
+            });
+          }}
+          onAfterExit={() => {
+            // restore scrollbar
+            document.body.style.overflow = '';
+          }}
+        >
           <Show when={state.auth.isLoggedIn} fallback={<Login />}>
-            <div class="container d-flex flex-wrap">
+            <div class="container d-flex flex-wrap align-items-center">
               <ul class="nav me-auto">
                 <li class="nav-item">
                   <a
                     href="https://www.solidjs.com/"
-                    class="nav-link link-dark px-2 active"
+                    class="nav-link link-light px-2 active"
                     aria-current="page"
                   >
                     SolidJS Docs
@@ -37,7 +85,7 @@ const Header: Component = () => {
                 <li class="nav-item">
                   <a
                     href="https://codesandbox.io/s/reacthookedoncontext-t2n8e"
-                    class="nav-link link-dark px-2"
+                    class="nav-link link-light px-2"
                   >
                     Codesandbox
                   </a>
@@ -45,21 +93,21 @@ const Header: Component = () => {
                 <li class="nav-item">
                   <a
                     href="https://discord.gg/solidjs"
-                    class="nav-link link-dark px-2"
+                    class="nav-link link-light px-2"
                   >
                     Discord Help
                   </a>
                 </li>
               </ul>
               <Show when={state.auth.isLoggedIn}>
-                <div class="hstack gap-3 col-md-3 text-end">
-                  <span class="nav-link link-dark px-2">
+                <div class="hstack gap-3 text-end">
+                  <span class="nav-link link-light px-2">
                     {state.auth.username}
                   </span>
                   <button
                     type="button"
                     onClick={logout}
-                    class="btn btn-outline-primary me-2"
+                    class="btn btn-outline-light me-2"
                   >
                     Logout
                   </button>

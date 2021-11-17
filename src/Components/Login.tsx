@@ -15,8 +15,9 @@ const Login: Component = () => {
   return (
     <div
       class={`container d-flex flex-column min-vh-100 justify-content-center`}
-      style="width: 50rem;"
+      style="width: 50rem; margin-top: -1rem;"
     >
+      <img src="https://via.placeholder.com/468x60/000000/FFFFFF?text=Your+Logo+Here" />
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Login</h5>
