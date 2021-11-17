@@ -13,6 +13,26 @@ html, body {
   flex: 1 1 auto;
 }
 
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-to {
+  opacity: 0;
+}
+
+.fade-enter-to, .fade-exit, .fade-exit-to {
+  transition: opacity 1s;
+}
+
 @media (max-width: 991.98px) {
   .padding {
     padding: 1.5rem;

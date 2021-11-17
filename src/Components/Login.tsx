@@ -2,7 +2,6 @@ import { createSignal, Show } from 'solid-js';
 import type { Component } from 'solid-js';
 
 import { useStore } from '../store';
-import styles from './Header.module.css';
 
 const Login: Component = () => {
   const [, { login }] = useStore();
@@ -13,30 +12,12 @@ const Login: Component = () => {
     login(username(), password());
   };
 
-  /* 
-  {(
-        <>
-          <button
-            type="button"
-            onClick={toggle}
-            class="btn btn-outline-primary me-2"
-          >
-            Login
-          </button>
-          <button type="button" class="btn btn-primary">
-            Sign-up
-          </button>
-        </>
-      )}
-
-*/
-
   return (
     <div
       class={`container d-flex flex-column min-vh-100 justify-content-center`}
       style="width: 50rem;"
     >
-      <div class={`${styles.loginbox} card`}>
+      <div class="card">
         <div class="card-body">
           <h5 class="card-title">Login</h5>
           <div class="input-group mb-3">

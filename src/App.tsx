@@ -1,6 +1,8 @@
 import { Component, createEffect } from 'solid-js';
 import { createSignal, on } from 'solid-js';
 
+import { Transition } from 'solid-transition-group';
+
 import List from './Components/List'
 import Form from './Components/Form';
 import Header from './Components/Header';
@@ -22,6 +24,11 @@ const App: Component = () => {
 
   return (
     <>
+      <Transition name="fade">
+        <Show when={state.auth.isLoggedIn} fallback={<div>FOO</div>}>
+          <div>BLAH</div>
+        </Show>
+      </Transition>
       <Header />
       <Show when={state.auth.isLoggedIn}>
         <div class="container">

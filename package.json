@@ -21,6 +21,7 @@
     "solid-blocks": "^0.0.1",
     "solid-js": "^1.2.2",
     "solid-styled-components": "^0.27.3",
+    "solid-transition-group": "^0.0.8",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

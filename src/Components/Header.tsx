@@ -1,7 +1,7 @@
 import { Component, onMount, Show } from 'solid-js';
 
 import { useStore } from '../store';
-
+import { Transition } from 'solid-transition-group';
 
 import Login from './Login';
 
@@ -17,55 +17,57 @@ const Header: Component = () => {
       <nav
         class="py-2 bg-primary border-bottom"
         style={{
-          'height': state.auth.isLoggedIn ? '10vh' : '100vh',
+          height: state.auth.isLoggedIn ? '10vh' : '100vh',
           transition: 'height 2s ease',
         }}
       >
-        <Show when={state.auth.isLoggedIn} fallback={<Login />}>
-          <div class="container d-flex flex-wrap">
-            <ul class="nav me-auto">
-              <li class="nav-item">
-                <a
-                  href="https://www.solidjs.com/"
-                  class="nav-link link-dark px-2 active"
-                  aria-current="page"
-                >
-                  SolidJS Docs
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="https://codesandbox.io/s/reacthookedoncontext-t2n8e"
-                  class="nav-link link-dark px-2"
-                >
-                  Codesandbox
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="https://discord.gg/solidjs"
-                  class="nav-link link-dark px-2"
-                >
-                  Discord Help
-                </a>
-              </li>
-            </ul>
-            <Show when={state.auth.isLoggedIn}>
-              <div class="hstack gap-3 col-md-3 text-end">
-                <span class="nav-link link-dark px-2">
-                  {state.auth.username}
-                </span>
-                <button
-                  type="button"
-                  onClick={logout}
-                  class="btn btn-outline-primary me-2"
-                >
-                  Logout
-                </button>
-              </div>
-            </Show>
-          </div>
-        </Show>
+        <Transition name="fade">
+          <Show when={state.auth.isLoggedIn} fallback={<Login />}>
+            <div class="container d-flex flex-wrap">
+              <ul class="nav me-auto">
+                <li class="nav-item">
+                  <a
+                    href="https://www.solidjs.com/"
+                    class="nav-link link-dark px-2 active"
+                    aria-current="page"
+                  >
+                    SolidJS Docs
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="https://codesandbox.io/s/reacthookedoncontext-t2n8e"
+                    class="nav-link link-dark px-2"
+                  >
+                    Codesandbox
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="https://discord.gg/solidjs"
+                    class="nav-link link-dark px-2"
+                  >
+                    Discord Help
+                  </a>
+                </li>
+              </ul>
+              <Show when={state.auth.isLoggedIn}>
+                <div class="hstack gap-3 col-md-3 text-end">
+                  <span class="nav-link link-dark px-2">
+                    {state.auth.username}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={logout}
+                    class="btn btn-outline-primary me-2"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </Show>
+            </div>
+          </Show>
+        </Transition>
       </nav>
       <Show when={state.auth.isLoggedIn}>
         <header class="py-3 mb-4 border-bottom">
