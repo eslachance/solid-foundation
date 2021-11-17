@@ -2,6 +2,11 @@ body {
   background-color: #f9f9fa;
 }
 
+html, body {
+  margin:0px;
+  height:100%;
+}
+
 .flex {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;

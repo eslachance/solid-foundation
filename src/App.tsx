@@ -10,7 +10,7 @@ import { useStore } from './store';
 const App: Component = () => {
   const [searchTerm, setSearchTerm] = createSignal<string>('');
 
-  const [, { setAllTodos }] = useStore();
+  const [state, { setAllTodos }] = useStore();
   createEffect(on(searchTerm, (v) => {
     const endpoint =
       v && v.length > 0 ? `/api/search/${encodeURI(v)}` : '/api/todos';
@@ -23,15 +23,17 @@ const App: Component = () => {
   return (
     <>
       <Header />
-      <div class="container">
-        <div class="card px-3">
-          <div class="card-body">
-            <h4 class="card-title">Your Todo List</h4>
-            <Form />
-            <List />
+      <Show when={state.auth.isLoggedIn}>
+        <div class="container">
+          <div class="card px-3">
+            <div class="card-body">
+              <h4 class="card-title">Your Todo List</h4>
+              <Form />
+              <List />
+            </div>
           </div>
         </div>
-      </div>
+      </Show>
     </>
   );
 };
